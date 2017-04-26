@@ -27,6 +27,7 @@ function grabDiscount(event) {
     }
     writeData(productData);
 }
+
 // XHR REQUEST
 var xhrProducts = new XMLHttpRequest();
 
@@ -53,13 +54,24 @@ function writeData(data) {
     var cat3 = `<h4>Household:</h4><br>`;
     for(var i = 0; i < mainObject.length; i++) {
         var products = mainObject[i];
-        var price = products.price * discount;
         // console.log(products);
         if (products.category_id === 1) {
+            var price = products.price;
+            if (seasonVal == 1) {
+                price = price - Math.round(10 * (price * discount)) / 10;
+            }
             cat1 += `<h5>${products.name} -</h5><p>$${price}</p>`;
         } else if (products.category_id === 2) {
+            var price = products.price;
+            if (seasonVal == 2) {
+                price = price - Math.round(10 * (price * discount)) / 10;
+            }
             cat2 += `<h5>${products.name} -</h5><p>$${price}</p>`;
         } else if (products.category_id === 3) {
+            var price = products.price;
+            if (seasonVal == 3) {
+                price = price - Math.round(10 * (price * discount)) / 10;
+            }
             cat3 += `<h5>${products.name} -</h5><p>$${price}</p>`;
         }
     }
